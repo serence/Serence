@@ -3,6 +3,7 @@ package org.nganga.sesame;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -20,8 +21,9 @@ public class NavigationDrawerFragment extends Fragment {
 
     public static final String PREF_FILE_NAME = "testpref";
     public static final String KEY_USER_LEARNED_DRAWER = "user_learned_drawer";
-    private ActionBarDrawerToggle mDrawableToggle;
+    private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+    private View containerView;
 
     private boolean mUserLearnedDrawer;
     private boolean mFromSavedInstaceState;
@@ -38,6 +40,15 @@ public class NavigationDrawerFragment extends Fragment {
         }
     }
 
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggls
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
     public NavigationDrawerFragment() {
         // Required empty public constructor
     }
@@ -51,25 +62,46 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
 
-    public void setUp(DrawerLayout drawerLayout, Toolbar toolbar) {
+    public void setUp(int fragmentId, DrawerLayout drawerLayout, Toolbar toolbar) {
+
+        containerView = getActivity().findViewById((fragmentId));
 
         mDrawerLayout = drawerLayout;
 
-        mDrawableToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.drawable.menu, R.string.drawer_open, R.string.drawer_close){
+        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.drawable.menu, R.string.drawer_open, R.string.drawer_close){
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+
+                if(!mUserLearnedDrawer) {
+
+                    mUserLearnedDrawer = true;
+                    saveToPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, mUserLearnedDrawer + "");
+                }
+
+                getActivity().invalidateOptionsMenu();   //This menu redraws the toolbar as the drawer destroys it
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
+
+                getActivity().invalidateOptionsMenu();
             }
 
         };
 
-        mDrawerLayout.setDrawerListener(mDrawableToggle);
+        if(!mUserLearnedDrawer && !mFromSavedInstaceState){
+
+            mDrawerLayout.openDrawer(containerView);
+        }
+
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        //this sets the hamburger icon to solve for creation of activity each time
+
 
     }
 
@@ -86,4 +118,6 @@ public class NavigationDrawerFragment extends Fragment {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(preferenceName, defaultValue);
     }
+
+
 }
