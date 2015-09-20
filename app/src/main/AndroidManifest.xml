@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Profile"
+            android:label="@string/title_activity_profile" >
+
+              <!--This set the parent of profile as Main Activity so as to allow working of home button on Toolbar-->
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Profile"/>
+
+        </activity>
     </application>
 
 </manifest>
