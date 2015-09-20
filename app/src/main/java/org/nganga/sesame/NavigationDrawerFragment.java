@@ -41,7 +41,6 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
 
-
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -68,7 +67,8 @@ public class NavigationDrawerFragment extends Fragment {
 
         mDrawerLayout = drawerLayout;
 
-        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.drawable.menu, R.string.drawer_open, R.string.drawer_close){
+        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.drawable.menu ,R.string.drawer_open, R.string.drawer_close)
+        {
 
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -97,10 +97,15 @@ public class NavigationDrawerFragment extends Fragment {
             mDrawerLayout.openDrawer(containerView);
         }
 
-
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        //this sets the hamburger icon to solve for creation of activity each time
+
+        mDrawerLayout.post(new Runnable() {
+            @Override
+            public void run() {
+              mDrawerToggle.syncState();
+            }
+        });
 
 
     }
@@ -118,6 +123,8 @@ public class NavigationDrawerFragment extends Fragment {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(preferenceName, defaultValue);
     }
+
+
 
 
 }
