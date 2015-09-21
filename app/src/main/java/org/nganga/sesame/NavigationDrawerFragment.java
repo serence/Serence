@@ -2,6 +2,7 @@ package org.nganga.sesame;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends Fragment implements RecyclerAdapter.ClickListener {
 
     private RecyclerView recylerView;
     public static final String PREF_FILE_NAME = "testpref";
@@ -67,6 +68,7 @@ public class NavigationDrawerFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recylerView = (RecyclerView) layout.findViewById(R.id.drawerList);
         adapter = new RecyclerAdapter(getActivity(), getData());
+        adapter.setClickListener(this); //this states that fragement is the object that implement (adapter)clickListener
         recylerView.setAdapter(adapter);
         recylerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return layout;
@@ -153,6 +155,8 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
 
-
-
+    @Override
+    public void itemClicked(View view, int position) {
+        startActivity(new Intent(getActivity(), Profile.class));
+    }
 }

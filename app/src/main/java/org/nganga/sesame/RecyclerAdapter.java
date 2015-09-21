@@ -1,6 +1,7 @@
 package org.nganga.sesame;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     private LayoutInflater inflater;
 
+    private ClickListener clickListener;
+
     Context context;
 
     List<RecyclerData> data = Collections.emptyList(); //This ensures we do not get nullPointers exception
@@ -33,6 +36,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         data.remove(position);
         notifyItemRemoved(position);
+    }
+
+    // Objects need to initialize this method so as to implement listener
+
+    public void setClickListener(ClickListener clickListener){
+
+        this.clickListener = clickListener;
     }
 
     @Override
@@ -70,13 +80,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
             title = (TextView) itemView.findViewById(R.id.listText);
             icon = (ImageView) itemView.findViewById(R.id.listIcon);
-            icon.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
 
-            delete(getPosition());
+            if(clickListener != null) {
+
+                clickListener.itemClicked(view, getPosition());
+            }
+
         }
+    }
+
+    public interface ClickListener {
+
+
+        public void itemClicked (View view, int position);
     }
 }
