@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by nganga on 9/21/15.
  */
@@ -15,9 +18,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     private LayoutInflater inflater;
 
-    public RecyclerAdapter(Context context){
+    List<RecyclerData> data = Collections.emptyList(); //This ensure we do not get nullPointers exception
+
+    public RecyclerAdapter(Context context, List<RecyclerData> data){
 
         inflater = LayoutInflater.from(context);
+        this.data = data;
     }
 
     @Override
@@ -28,9 +34,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         return holder;
     }
 
+
+    //This is where we fill in the data items.
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
+        RecyclerData current = data.get(position);
+        holder.title.setText(current.title);
+        holder.icon.setImageResource(current.iconId);
     }
 
 
