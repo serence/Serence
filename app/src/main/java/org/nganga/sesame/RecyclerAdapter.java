@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,12 +19,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     private LayoutInflater inflater;
 
+    Context context;
+
     List<RecyclerData> data = Collections.emptyList(); //This ensures we do not get nullPointers exception
 
     public RecyclerAdapter(Context context, List<RecyclerData> data){
 
         inflater = LayoutInflater.from(context);
         this.data = data;
+    }
+
+    public void delete(int position) {
+
+        data.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override
@@ -51,7 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     }
 
 
-    class  MyViewHolder extends RecyclerView.ViewHolder {
+    class  MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView title;
         ImageView icon;
@@ -61,6 +70,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
             title = (TextView) itemView.findViewById(R.id.listText);
             icon = (ImageView) itemView.findViewById(R.id.listIcon);
+            icon.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            delete(getPosition());
         }
     }
 }
