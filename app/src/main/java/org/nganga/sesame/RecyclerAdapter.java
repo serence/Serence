@@ -18,7 +18,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     private LayoutInflater inflater;
 
-    List<RecyclerData> data = Collections.emptyList(); //This ensure we do not get nullPointers exception
+    List<RecyclerData> data = Collections.emptyList(); //This ensures we do not get nullPointers exception
 
     public RecyclerAdapter(Context context, List<RecyclerData> data){
 
@@ -47,7 +47,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return 0;
+        return data.size();
     }
 
 
