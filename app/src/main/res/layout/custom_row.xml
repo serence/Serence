@@ -18,8 +18,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:textSize="23sp"
         android:id="@+id/listText"
-        android:layout_marginLeft="72dp"
+        android:layout_marginLeft="80dp"
         android:layout_centerVertical="true"
         android:text="Lorem Ipsum"/>
 

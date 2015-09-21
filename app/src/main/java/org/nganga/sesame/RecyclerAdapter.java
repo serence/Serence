@@ -38,7 +38,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.custom_row, parent, false);  //Inflate view elements from root custom xml
+        View view = inflater.inflate(R.layout.custom_row, parent, false);  //Inflate view elements in root custom xml
         MyViewHolder holder = new MyViewHolder(view);   //custom viewholder used to reuse view components.
         return holder;
     }

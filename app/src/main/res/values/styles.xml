@@ -14,6 +14,13 @@
         <item name="android:colorAccent">@color/accentColor</item>
 
 
+        <item name="android:colorControlHighlight">@color/lightprimaryColor</item>
+
+        <item name="android:windowBackground">@color/textIcons</item>
+
+
+
+
     </style>
 
 
