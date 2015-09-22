@@ -6,19 +6,6 @@
     <!--mask id special component to hold ripple effect within a boundary-->
     <item android:id="@android:id/mask" android:drawable="@android:color/white"></item>
 
-    <item android:state_pressed="true">
-
-        <shape>
-            <solid android:color="@color/colorHightlight"/>
-        </shape>
-    </item>
-
-    <item>
-
-        <shape>
-            <solid android:color="@android:color/white"/>
-        </shape>
-    </item>
 
 
 </ripple>

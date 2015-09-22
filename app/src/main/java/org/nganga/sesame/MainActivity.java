@@ -30,7 +30,7 @@ public class MainActivity extends ActionBarActivity  {
 
     private SlidingTabLayout mTabs;
     private ViewPager mPager;
-    String[] tabs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +51,9 @@ public class MainActivity extends ActionBarActivity  {
         mTabs.setCustomTabView(R.layout.custom_tabs, R.id.tabText);
 
 //        This sets color below current tab
+        mTabs.setBackgroundColor(getResources().getColor(R.color.primaryColor));
+        mTabs.setSelectedIndicatorColors(getResources().getColor(R.color.accentColor));
 
-        mTabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer(){
-
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.accentColor);
-
-            }
-        });
 
         mTabs.setViewPager(mPager);
     }
@@ -94,9 +88,10 @@ public class MainActivity extends ActionBarActivity  {
 
     class MyPagerAdapter extends FragmentPagerAdapter {
 
+
         int[] icons = {R.drawable.moon, R.drawable.moon, R.drawable.moon };
         String[] tabText = getResources().getStringArray(R.array.tabs);
-
+        String[] tabs;
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -127,29 +122,5 @@ public class MainActivity extends ActionBarActivity  {
         }
     }
 
-    public static class MyFragment extends Fragment{
 
-        public static MyFragment getInstance(int position){
-            MyFragment myFragment = new MyFragment();
-            Bundle args = new Bundle();
-            args.putInt("position", position);
-            myFragment.setArguments(args);
-            return myFragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-            View layout = inflater.inflate(R.layout.my_fragment, container, false);
-            TextView textView = (TextView) layout.findViewById(R.id.tabFragmentText);
-            Bundle bundle = getArguments();
-
-            if (bundle != null) {
-
-                textView.setText("You are no Page " + bundle.getInt("position"));
-            }
-
-            return layout;
-        }
-    }
 }

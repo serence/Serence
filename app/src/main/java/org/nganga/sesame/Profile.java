@@ -1,14 +1,31 @@
 package org.nganga.sesame;
 
+import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.NavUtils;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import it.neokree.materialtabs.MaterialTab;
+import it.neokree.materialtabs.MaterialTabHost;
+import it.neokree.materialtabs.MaterialTabListener;
 
-public class Profile extends ActionBarActivity {
+
+public class Profile extends ActionBarActivity implements MaterialTabListener {
+
+    private MaterialTabHost tabHost;
+    private ViewPager viewPager;
+    ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +38,25 @@ public class Profile extends ActionBarActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        tabHost = (MaterialTabHost) findViewById(R.id.materialTabHost);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        adapter = (new ViewPagerAdapter(getSupportFragmentManager()));
+        viewPager.setAdapter(adapter);
+        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+            @Override
+            public void onPageSelected(int position) {
+                tabHost.setSelectedNavigationItem(position);
+            }
+        });
+
+        for(int i = 0; i < adapter.getCount(); i++){
+            tabHost.addTab(
+                    tabHost.newTab().setText(adapter.getPageTitle(i)).setTabListener(this)
+            );
+        }
     }
 
     @Override
@@ -51,4 +87,53 @@ public class Profile extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onTabSelected(MaterialTab materialTab) {
+
+        viewPager.setCurrentItem(materialTab.getPosition());
+    }
+
+    @Override
+    public void onTabReselected(MaterialTab materialTab) {
+
+    }
+
+    @Override
+    public void onTabUnselected(MaterialTab materialTab) {
+
+    }
+
+    class ViewPagerAdapter extends FragmentStatePagerAdapter {
+
+        int[] icons = {R.drawable.moon, R.drawable.moon, R.drawable.moon };
+        String[] tabText = getResources().getStringArray(R.array.tabs);
+        String[] tabs;
+
+
+        public ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+            tabs = getResources().getStringArray(R.array.tabs);
+
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            MyFragment myFragment = MyFragment.getInstance(position);
+            return myFragment;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+
+            return getResources().getStringArray(R.array.tabs)[position];
+
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+    }
+
 }
