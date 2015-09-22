@@ -1,6 +1,7 @@
 package org.nganga.sesame;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +47,20 @@ public class MainActivity extends ActionBarActivity  {
         mPager = (ViewPager) findViewById(R.id.viewPager);
         mPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        mTabs.setDistributeEvenly(true);
+        mTabs.setCustomTabView(R.layout.custom_tabs, R.id.tabText);
+
+//        This sets color below current tab
+
+        mTabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer(){
+
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.accentColor);
+
+            }
+        });
+
         mTabs.setViewPager(mPager);
     }
 
@@ -76,6 +94,10 @@ public class MainActivity extends ActionBarActivity  {
 
     class MyPagerAdapter extends FragmentPagerAdapter {
 
+        int[] icons = {R.drawable.moon, R.drawable.moon, R.drawable.moon };
+        String[] tabText = getResources().getStringArray(R.array.tabs);
+
+
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
             tabs = getResources().getStringArray(R.array.tabs);
@@ -90,7 +112,13 @@ public class MainActivity extends ActionBarActivity  {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return tabs[position];
+
+            Drawable drawable = getResources().getDrawable(icons[position]);
+            drawable.setBounds(0,0,36,36);
+            ImageSpan imageSpan = new ImageSpan(drawable);
+            SpannableString spannableString = new SpannableString(" "); //SpannableString allow one to embed other items to a string eg. Image
+            spannableString.setSpan(imageSpan, 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            return spannableString;
         }
 
         @Override
