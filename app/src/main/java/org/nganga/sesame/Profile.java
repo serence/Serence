@@ -45,7 +45,7 @@ public class Profile extends ActionBarActivity implements MaterialTabListener {
 
         adapter = (new ViewPagerAdapter(getSupportFragmentManager()));
         viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 tabHost.setSelectedNavigationItem(position);
@@ -54,7 +54,7 @@ public class Profile extends ActionBarActivity implements MaterialTabListener {
 
         for(int i = 0; i < adapter.getCount(); i++){
             tabHost.addTab(
-                    tabHost.newTab().setText(adapter.getPageTitle(i)).setTabListener(this)
+                    tabHost.newTab().setIcon(adapter.getIcon(i)).setTabListener(this)
             );
         }
     }
@@ -106,8 +106,7 @@ public class Profile extends ActionBarActivity implements MaterialTabListener {
 
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-        int[] icons = {R.drawable.moon, R.drawable.moon, R.drawable.moon };
-        String[] tabText = getResources().getStringArray(R.array.tabs);
+        int[] icons = {R.drawable.profile, R.drawable.profile, R.drawable.profile };
         String[] tabs;
 
 
@@ -134,6 +133,11 @@ public class Profile extends ActionBarActivity implements MaterialTabListener {
         public int getCount() {
             return 3;
         }
+
+        private Drawable getIcon(int position){
+            return getResources().getDrawable(icons[position]);
+        }
     }
+
 
 }
