@@ -8,6 +8,10 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Profile</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="tabs">
+        <item>ONE</item>
+        <item>TWO</item>
+        <item>THREE</item>
+    </string-array>
+
 </resources>
