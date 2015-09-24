@@ -15,6 +15,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.nganga.sesame.VolleyNetwork.VolleySingleton;
+
 /**
  * Created by nganga on 9/22/15.
  */
@@ -42,7 +44,7 @@ public class MyFragment extends Fragment {
 
 
       // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        RequestQueue queue = VolleySingleton.getsInstance().getRequestQueue();
         String url ="http://www.google.com";
 
     // Request a string response from the provided URL.
@@ -51,12 +53,12 @@ public class MyFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        Toast.makeText(getActivity(),response.substring(0,500), Toast.LENGTH_SHORT);
+                        Toast.makeText(getActivity(),response.substring(0, 1000), Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT);
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
        // Add the request to the RequestQueue.
