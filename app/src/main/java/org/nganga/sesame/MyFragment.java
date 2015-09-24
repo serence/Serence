@@ -6,6 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 /**
  * Created by nganga on 9/22/15.
@@ -29,8 +37,30 @@ public class MyFragment extends Fragment {
 
         if (bundle != null) {
 
-            textView.setText("You are no Page " + bundle.getInt("position"));
+            textView.setText("You are on Page " + bundle.getInt("position"));
         }
+
+
+      // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String url ="http://www.google.com";
+
+    // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Toast.makeText(getActivity(),response.substring(0,500), Toast.LENGTH_SHORT);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT);
+            }
+        });
+       // Add the request to the RequestQueue.
+        queue.add(stringRequest);
 
         return layout;
     }
