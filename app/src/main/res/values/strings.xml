@@ -13,5 +13,6 @@
         <item>TWO</item>
         <item>THREE</item>
     </string-array>
+    <string name="title_activity_vectors">Vectors</string>
 
 </resources>

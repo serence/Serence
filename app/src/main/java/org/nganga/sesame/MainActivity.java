@@ -1,5 +1,7 @@
 package org.nganga.sesame;
 
+
+import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
@@ -19,14 +21,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
+import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
+
+import org.nganga.sesame.MyFragment;
+import org.nganga.sesame.NavigationDrawerFragment;
+import org.nganga.sesame.R;
 import org.nganga.sesame.tabs.SlidingTabLayout;
 
 
-public class MainActivity extends ActionBarActivity  {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
     private Toolbar toolbar;
+    Drawable drawable;
 
     private SlidingTabLayout mTabs;
     private ViewPager mPager;
@@ -57,6 +68,47 @@ public class MainActivity extends ActionBarActivity  {
 
 
         mTabs.setViewPager(mPager);
+
+      FAB();
+    }
+
+    public void FAB() {
+
+        // in Activity Context
+        ImageView icon = new ImageView(this); // Create an icon
+        icon.setImageResource(R.drawable.start);
+
+        FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
+                .setContentView(icon)
+                .build();
+
+
+        drawable = getResources().getDrawable(R.drawable.starty);
+
+        //  Create menu items:
+        ImageView share = new ImageView(this); // Create an icon
+        icon.setImageDrawable(drawable);
+
+        ImageView dare = new ImageView(this); // Create an icon
+        icon.setImageResource(R.drawable.starty);
+
+        ImageView care = new ImageView(this); // Create an icon
+        icon.setImageResource(R.drawable.starty);
+
+        SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
+        SubActionButton button1 = itemBuilder.setContentView(share).build();
+        SubActionButton button2 = itemBuilder.setContentView(dare).build();
+        SubActionButton button3 = itemBuilder.setContentView(care).build();
+
+        // Create the menu with the items:
+
+        FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+                .addSubActionView(button1)
+                .addSubActionView(button2)
+                .addSubActionView(button3)
+                        // ...
+                .attachTo(actionButton)
+                .build();
     }
 
     @Override
@@ -84,6 +136,11 @@ public class MainActivity extends ActionBarActivity  {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
 
