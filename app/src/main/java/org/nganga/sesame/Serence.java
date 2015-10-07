@@ -18,12 +18,19 @@ import android.text.style.ImageSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.nganga.sesame.tabs.SlidingTabLayout;
 
 
 public class Serence extends AppCompatActivity {
 
 
     private ViewPager viewPager;
+    Toolbar toolbar;
+    ViewPager pager;
+    SerencePagerAdapter adapter;
+    SlidingTabLayout tabs;
+    CharSequence Titles[]={"Strangers","Friends"};
+    int Numboftabs =2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,32 +40,31 @@ public class Serence extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Strangers"));
-        tabLayout.addTab(tabLayout.newTab().setText("Friends"));
-        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.accent));
+        // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+        adapter =  new SerencePagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        final SerencePagerAdapter adapter = new SerencePagerAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        // Assigning ViewPager View and setting the adapter
+        pager = (ViewPager) findViewById(R.id.viewPager);
+        pager.setAdapter(adapter);
+
+        // Assiging the Sliding Tab Layout View
+        tabs = (SlidingTabLayout) findViewById(R.id.tab_layout);
+        tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
+
+        // Setting Custom Color for the Scroll bar indicator of the Tab View
+        tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.accent);
             }
         });
+
+
+
+        // Setting the ViewPager For the SlidingTabsLayout
+        tabs.setViewPager(pager);
+
+
 
     }
 
