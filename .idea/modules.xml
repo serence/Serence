@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Serence.iml" filepath="$PROJECT_DIR$/Serence.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/serence.iml" filepath="$PROJECT_DIR$/serence.iml" />
+=======
+>>>>>>> 51cbd7284bd56c8d59547b0054136ee78c99aeb9
     </modules>
   </component>
 </project>
