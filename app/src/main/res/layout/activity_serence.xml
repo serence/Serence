@@ -10,14 +10,7 @@
         android:id="@+id/app_bar"
         layout="@layout/app_bar" />
 
-    <it.neokree.materialtabs.MaterialTabHost
-        android:id="@+id/materialTabHost"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        app:iconColor="#fff"
-        app:primaryColor="@color/primary"
-        app:accentColor="@color/accent"
-        app:hasIcons="true"/>
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

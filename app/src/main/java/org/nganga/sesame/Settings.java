@@ -1,27 +1,20 @@
 package org.nganga.sesame;
 
-import android.graphics.drawable.Drawable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import it.neokree.materialtabs.MaterialTab;
-import it.neokree.materialtabs.MaterialTabHost;
-import it.neokree.materialtabs.MaterialTabListener;
 
 
-public class Settings extends ActionBarActivity implements MaterialTabListener {
+public class Settings extends AppCompatActivity {
 
-    private MaterialTabHost tabHost;
     private ViewPager viewPager;
-    ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +29,7 @@ public class Settings extends ActionBarActivity implements MaterialTabListener {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        tabHost = (MaterialTabHost) findViewById(R.id.materialTabHost);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        adapter = (new ViewPagerAdapter(getSupportFragmentManager()));
-        viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                tabHost.setSelectedNavigationItem(position);
-            }
-        });
-
-        for(int i = 0; i < adapter.getCount(); i++){
-            tabHost.addTab(
-                    tabHost.newTab().setIcon(adapter.getIcon(i)).setTabListener(this)
-            );
-        }
     }
 
     @Override
@@ -84,56 +61,6 @@ public class Settings extends ActionBarActivity implements MaterialTabListener {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onTabSelected(MaterialTab materialTab) {
-
-        viewPager.setCurrentItem(materialTab.getPosition());
-    }
-
-    @Override
-    public void onTabReselected(MaterialTab materialTab) {
-
-    }
-
-    @Override
-    public void onTabUnselected(MaterialTab materialTab) {
-
-    }
-
-    class ViewPagerAdapter extends FragmentStatePagerAdapter {
-
-        int[] icons = {R.drawable.profile, R.drawable.profile, R.drawable.profile };
-        String[] tabs;
-
-
-        public ViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-            tabs = getResources().getStringArray(R.array.tabs);
-
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            MyFragment myFragment = MyFragment.getInstance(position);
-            return myFragment;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-
-            return getResources().getStringArray(R.array.tabs)[position];
-
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-
-        private Drawable getIcon(int position){
-            return getResources().getDrawable(icons[position]);
-        }
-    }
 
 
 }

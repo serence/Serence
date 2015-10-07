@@ -17,16 +17,12 @@ import android.text.style.ImageSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import it.neokree.materialtabs.MaterialTab;
-import it.neokree.materialtabs.MaterialTabHost;
-import it.neokree.materialtabs.MaterialTabListener;
 
 
-public class Serence extends AppCompatActivity implements MaterialTabListener {
+public class Serence extends AppCompatActivity {
 
-    private MaterialTabHost tabHost;
+
     private ViewPager viewPager;
-    ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,24 +32,8 @@ public class Serence extends AppCompatActivity implements MaterialTabListener {
         setSupportActionBar(toolbar);
 
 
-
-        tabHost = (MaterialTabHost) findViewById(R.id.materialTabHost);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        adapter = (new ViewPagerAdapter(getSupportFragmentManager()));
-        viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                tabHost.setSelectedNavigationItem(position);
-            }
-        });
-
-        for(int i = 0; i < adapter.getCount(); i++){
-            tabHost.addTab(
-                    tabHost.newTab().setIcon(adapter.getIcon(i)).setTabListener(this)
-            );
-        }
     }
 
     @Override
@@ -83,57 +63,6 @@ public class Serence extends AppCompatActivity implements MaterialTabListener {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onTabSelected(MaterialTab materialTab) {
-
-        viewPager.setCurrentItem(materialTab.getPosition());
-    }
-
-    @Override
-    public void onTabReselected(MaterialTab materialTab) {
-
-    }
-
-    @Override
-    public void onTabUnselected(MaterialTab materialTab) {
-
-    }
-
-    class ViewPagerAdapter extends FragmentStatePagerAdapter {
-
-        int[] icons = {R.drawable.profile, R.drawable.profile };
-        String[] tabs;
-
-
-        public ViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-            tabs = getResources().getStringArray(R.array.tabs);
-
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            MyFragment myFragment = MyFragment.getInstance(position);
-            return myFragment;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-
-            return getResources().getStringArray(R.array.tabs)[position];
-
-        }
-
-        @Override
-        public int getCount() {
-            return 2;
-        }
-
-        private Drawable getIcon(int position){
-            return getResources().getDrawable(icons[position]);
-        }
     }
 
 
