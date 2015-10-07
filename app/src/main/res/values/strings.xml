@@ -7,7 +7,10 @@
     <string name="title_activity_profile">Settings</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Profile</string>
-
+    <string-array name="tabs">
+        <item>All</item>
+        <item>Friends</item>
+    </string-array>
 
     <string name="title_activity_vectors">Vectors</string>
 
