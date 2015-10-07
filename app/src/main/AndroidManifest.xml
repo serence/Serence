@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".Serence"
             android:icon="@drawable/icon"
             android:label="@string/app_name" >
             <intent-filter>
@@ -21,18 +21,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Profile"
+            android:name=".Settings"
             android:icon="@drawable/icon"
             android:label="@string/title_activity_profile" >
 
             <!-- This set the parent of profile as Main Activity so as to allow working of home button on Toolbar -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Profile" />
-        </activity>
-        <activity
-            android:name=".Vectors"
-            android:label="@string/title_activity_vectors" >
+                android:value=".Settings" />
         </activity>
     </application>
 

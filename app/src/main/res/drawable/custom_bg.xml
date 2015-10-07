@@ -9,7 +9,7 @@
     <item android:state_pressed="true">
 
         <shape>
-            <solid android:color="@color/colorHightlight"/>
+            <solid android:color="@color/secondary_text"/>
         </shape>
     </item>
 

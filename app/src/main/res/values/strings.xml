@@ -1,18 +1,14 @@
 <resources>
-    <string name="app_name">Sesame</string>
+    <string name="app_name">Serence</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="profile">Profile</string>
-    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_profile">Settings</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Profile</string>
 
-    <string-array name="tabs">
-        <item>ONE</item>
-        <item>TWO</item>
-        <item>THREE</item>
-    </string-array>
+
     <string name="title_activity_vectors">Vectors</string>
 
 </resources>

@@ -3,10 +3,10 @@
     android:layout_height="match_parent"
     tools:context="org.nganga.sesame.Vectors">
 
-   <include
-       android:id="@+id/app_bar"
-       layout="@layout/app_bar"
-       />
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"
+        />
 
 
     <ImageView
