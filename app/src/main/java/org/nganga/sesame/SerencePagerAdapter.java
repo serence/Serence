@@ -21,11 +21,11 @@ public class SerencePagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                Strangers tab1 = new Strangers();
-                return tab1;
+                Strangers strangers = new Strangers();
+                return strangers;
             case 1:
-                Friends tab2 = new Friends();
-                return tab2;
+                Friends friends = new Friends();
+                return friends;
             default:
                 return null;
         }
