@@ -36,7 +36,7 @@ public class Serence extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Strangers"));
         tabLayout.addTab(tabLayout.newTab().setText("Friends"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.accent));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         final SerencePagerAdapter adapter = new SerencePagerAdapter
