@@ -3,6 +3,7 @@ package org.nganga.sesame;
 import android.app.Application;
 import android.content.Context;
 
+
 /**
  * Created by nganga on 9/24/15.
  */
@@ -25,4 +26,7 @@ public class MyApp extends Application {
     public static Context getAppContext() {
         return sInstance.getApplicationContext();
     }
+
+
+
 }
