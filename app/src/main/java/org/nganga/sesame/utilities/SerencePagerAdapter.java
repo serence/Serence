@@ -1,4 +1,4 @@
-package org.nganga.sesame;
+package org.nganga.sesame.utilities;
 
 /**
  * Created by mansa on 10/7/15.
@@ -7,6 +7,9 @@ package org.nganga.sesame;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import org.nganga.sesame.coreApp.Friends;
+import org.nganga.sesame.coreApp.OtherUsers;
 
 
 public class SerencePagerAdapter extends FragmentStatePagerAdapter {
@@ -30,7 +33,7 @@ public class SerencePagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                Strangers strangers = new Strangers();
+                OtherUsers strangers = new OtherUsers();
                 return strangers;
             case 1:
                 Friends friends = new Friends();

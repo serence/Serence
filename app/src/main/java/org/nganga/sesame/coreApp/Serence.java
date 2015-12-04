@@ -1,28 +1,20 @@
-package org.nganga.sesame;
+package org.nganga.sesame.coreApp;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ImageSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.nganga.sesame.R;
 import org.nganga.sesame.tabs.SlidingTabLayout;
+import org.nganga.sesame.utilities.SerencePagerAdapter;
 
 
 public class Serence extends AppCompatActivity {
@@ -33,7 +25,7 @@ public class Serence extends AppCompatActivity {
     ViewPager pager;
     SerencePagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Strangers","Friends"};
+    CharSequence Titles[]={"OtherUsers","Friends"};
     int Numboftabs =2;
 
     @Override

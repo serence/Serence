@@ -1,4 +1,4 @@
-package org.nganga.sesame;
+package org.nganga.sesame.coreApp;
 
 import android.app.Activity;
 import android.content.Context;

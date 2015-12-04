@@ -1,4 +1,4 @@
-package org.nganga.sesame;
+package org.nganga.sesame.coreApp;
 
 
 import android.support.v4.app.NavUtils;
@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.nganga.sesame.R;
 
 
 public class Settings extends AppCompatActivity {

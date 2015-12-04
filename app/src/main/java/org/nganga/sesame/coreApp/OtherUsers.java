@@ -1,4 +1,4 @@
-package org.nganga.sesame;
+package org.nganga.sesame.coreApp;
 
 import android.content.Context;
 import android.location.LocationManager;
@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.nganga.sesame.R;
 
-public class Strangers extends Fragment {
+
+public class OtherUsers extends Fragment {
 
 
-    public Strangers() {
+    public OtherUsers() {
         // Required empty public constructor
     }
 
